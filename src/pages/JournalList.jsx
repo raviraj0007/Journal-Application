@@ -19,8 +19,6 @@ import {
   Paperclip,
   MoreVertical,
   Shapes,
-  Square,
-  Circle,
   MoreHorizontal,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";

@@ -70,7 +70,7 @@ export default function LoginPage() {
           </div>
 
           <div className="mb-2 d-flex justify-content-between align-items-center">
-            <a href="#" className="small text-muted">Forgot password?</a>
+            <a href="/forgot-password" className="small text-muted">Forgot password?</a>
             <div>
               <input type="checkbox" id="remember" className="me-1" />
               <label htmlFor="remember" className="small text-muted">Remember</label>
