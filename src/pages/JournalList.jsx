@@ -3,7 +3,7 @@
 
 import React, { useEffect, useState, useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
-import JournalFormModal from "../components/JournalFormModal";
+import JournalForm from "../components/JournalFormModal";
 import {
   getJournals,
   addJournal,
@@ -28,8 +28,7 @@ import { useNavigate } from "react-router-dom";
 export default function JournalList() {
   const { user, setUser } = useContext(UserContext);
   const [journals, setJournals] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const [editingJournal, setEditingJournal] = useState(null);
+  const [editingJournal, setEditingJournal] = useState(false);
   const [selectedSidebar, setSelectedSidebar] = useState(0);
 
   const navigate = useNavigate();
@@ -71,9 +70,8 @@ export default function JournalList() {
       journalData.id && journals.find((j) => j.id === journalData.id)
         ? updateJournal
         : addJournal;
-
     action(journalData).then(() => {
-      setShowModal(false);
+      setEditingJournal(false);
       loadJournals();
     });
   };
@@ -81,13 +79,13 @@ export default function JournalList() {
   // Sidebar items
   const sidebarItems = [
     {
-      icon: <Pencil className="w-5 h-5" />, label: "Label", filled: true,
+      icon: <Pencil className="w-5 h-5" />, label: "Journals", filled: true,
     },
     {
-      icon: <Star className="w-5 h-5" />, label: "Label", filled: false,
+      icon: <Star className="w-5 h-5" />, label: "favorite", filled: false,
     },
     {
-      icon: <StarOff className="w-5 h-5" />, label: "Label", filled: false,
+      icon: <StarOff className="w-5 h-5" />, label: "Hide", filled: false,
     },
   ];
 
@@ -151,24 +149,67 @@ export default function JournalList() {
           </div>
         </div>
 
-        {/* Featured Journals */}
-        <div className="flex space-x-4 overflow-x-auto mb-6 pb-2">
-          {[0, 1, 2, 3, 4].map((idx) => (
-            <div
-              key={idx}
-              className="min-w-[150px] h-[120px] bg-[#ece6f0] rounded-2xl flex flex-col items-center justify-center space-y-2"
-            >
-              <Shapes className="w-8 h-8 opacity-40" />
-              <div className="flex gap-2">
-                <Circle className="w-6 h-6 opacity-30" />
-                <Square className="w-6 h-6 opacity-30" />
-              </div>
+        {/* Sentiment Header and Emoji Selector */}
+        <div className="flex flex-col items-center justify-center mb-10 pb-4">
+          <h2 className="text-3xl font-bold text-[#6750a4] mb-4">How's your day?</h2>
+          <div className="flex gap-8">
+            <div className="flex flex-col items-center">
+              <button
+                type="button"
+                className="text-6xl px-6 py-3 rounded-full border-4 border-transparent hover:border-[#6750a4] focus:outline-none transition-all duration-150 shadow-md hover:scale-110"
+                onClick={() => setEditingJournal({ title: '', content: '', sentiment: 'HAPPY' })}
+                aria-label="Happy"
+              >
+                😀
+              </button>
+              <span className="text-base mt-2 text-[#6750a4] font-semibold">Happy</span>
             </div>
-          ))}
-          <button className="min-w-[60px] h-[120px] flex items-center justify-center text-[#6750a4] font-medium hover:underline bg-transparent">
-            Show all
-          </button>
+            <div className="flex flex-col items-center">
+              <button
+                type="button"
+                className="text-6xl px-6 py-3 rounded-full border-4 border-transparent hover:border-[#6750a4] focus:outline-none transition-all duration-150 shadow-md hover:scale-110"
+                onClick={() => setEditingJournal({ title: '', content: '', sentiment: 'SAD' })}
+                aria-label="Sad"
+              >
+                😢
+              </button>
+              <span className="text-base mt-2 text-[#6750a4] font-semibold">Sad</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <button
+                type="button"
+                className="text-6xl px-6 py-3 rounded-full border-4 border-transparent hover:border-[#6750a4] focus:outline-none transition-all duration-150 shadow-md hover:scale-110"
+                onClick={() => setEditingJournal({ title: '', content: '', sentiment: 'ANGRY' })}
+                aria-label="Angry"
+              >
+                😡
+              </button>
+              <span className="text-base mt-2 text-[#6750a4] font-semibold">Angry</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <button
+                type="button"
+                className="text-6xl px-6 py-3 rounded-full border-4 border-transparent hover:border-[#6750a4] focus:outline-none transition-all duration-150 shadow-md hover:scale-110"
+                onClick={() => setEditingJournal({ title: '', content: '', sentiment: 'ANXIOUS' })}
+                aria-label="Anxious"
+              >
+                😰
+              </button>
+              <span className="text-base mt-2 text-[#6750a4] font-semibold">Anxious</span>
+            </div>
+          </div>
         </div>
+
+        {/* Inline Add/Edit Form */}
+        {editingJournal !== false && (
+          <div className="mb-6">
+            <JournalForm
+              journal={editingJournal || undefined}
+              onCancel={() => setEditingJournal(false)}
+              onSuccess={handleSuccess}
+            />
+          </div>
+        )}
 
         {/* List Section */}
         <div className="space-y-4">
@@ -196,7 +237,6 @@ export default function JournalList() {
                 <button
                   onClick={() => {
                     setEditingJournal(j);
-                    setShowModal(true);
                   }}
                   className="text-gray-500 hover:text-black px-2"
                 >
@@ -215,25 +255,6 @@ export default function JournalList() {
             </div>
           ))}
         </div>
-
-        {/* Add Button */}
-        <button
-          onClick={() => {
-            setEditingJournal(null);
-            setShowModal(true);
-          }}
-          className="mt-6 bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition"
-        >
-          Add Journal
-        </button>
-
-        {showModal && (
-          <JournalFormModal
-            journal={editingJournal}
-            onClose={() => setShowModal(false)}
-            onSuccess={handleSuccess}
-          />
-        )}
       </main>
     </div>
   );
