@@ -25,24 +25,29 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100 bg-danger">
-      <div className="card shadow p-4" style={{ maxWidth: "500px", width: "100%" }}>
-        <div className="text-center mb-3">
+    <div className="min-h-screen bg-danger d-flex justify-content-center align-items-center p-3">
+      <div className="card shadow-lg p-4 p-md-5" style={{ 
+        maxWidth: "500px", 
+        width: "100%",
+        minWidth: "280px"
+      }}>
+        <div className="text-center mb-3 mb-md-4">
           <img
             src="https://img.icons8.com/ios/512/ff0000/journal.png"
             alt="Journal Logo"
-            style={{ height: "60px" }}
+            className="img-fluid"
+            style={{ height: "50px", maxHeight: "60px" }}
           />
-          <h3 className="mt-3">Create Your Journal Account</h3>
-          <p className="text-muted">Start documenting your journey</p>
+          <h3 className="mt-3 mt-md-4 fs-4 fs-md-3">Create Your Journal Account</h3>
+          <p className="text-muted mb-0 fs-6 fs-md-5">Start documenting your journey</p>
         </div>
         <form onSubmit={handleSignUp}>
-          {error && <div className="alert alert-danger">{error}</div>}
+          {error && <div className="alert alert-danger fs-6">{error}</div>}
           <div className="mb-3">
-            <label className="form-label">Username</label>
+            <label className="form-label fw-medium">Username</label>
             <input
               type="text"
-              className="form-control"
+              className="form-control form-control-lg"
               required
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -50,10 +55,10 @@ export default function SignUpPage() {
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Email</label>
+            <label className="form-label fw-medium">Email</label>
             <input
               type="email"
-              className="form-control"
+              className="form-control form-control-lg"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -61,10 +66,10 @@ export default function SignUpPage() {
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Password</label>
+            <label className="form-label fw-medium">Password</label>
             <input
               type="password"
-              className="form-control"
+              className="form-control form-control-lg"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -73,10 +78,10 @@ export default function SignUpPage() {
             />
           </div>
           <div className="mb-4">
-            <label className="form-label">Confirm Password</label>
+            <label className="form-label fw-medium">Confirm Password</label>
             <input
               type="password"
-              className="form-control"
+              className="form-control form-control-lg"
               required
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -84,12 +89,12 @@ export default function SignUpPage() {
               autoComplete="new-password"
             />
           </div>
-          <button type="submit" className="btn btn-dark w-100 mb-2">
+          <button type="submit" className="btn btn-dark w-100 mb-3 py-2 py-md-3 fs-6">
             Create Account
           </button>
           <button
             type="button"
-            className="btn btn-outline-dark w-100"
+            className="btn btn-outline-dark w-100 py-2 py-md-3 fs-6"
             onClick={() => navigate("/")}
           >
             Already have an account? Login

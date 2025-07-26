@@ -32,25 +32,30 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100 bg-danger">
-      <div className="card shadow p-4" style={{ maxWidth: "500px", width: "100%" }}>
-        <div className="text-center mb-3">
+    <div className="min-h-screen bg-danger d-flex justify-content-center align-items-center p-3">
+      <div className="card shadow-lg p-4 p-md-5" style={{ 
+        maxWidth: "500px", 
+        width: "100%",
+        minWidth: "280px"
+      }}>
+        <div className="text-center mb-3 mb-md-4">
           <img
             src="https://img.icons8.com/ios/512/ff0000/journal.png"
             alt="Journal Logo"
-            style={{ height: "60px" }}
+            className="img-fluid"
+            style={{ height: "50px", maxHeight: "60px" }}
           />
-          <h3 className="mt-3">Welcome to Journal App</h3>
-          <p className="text-muted">Please login to continue</p>
+          <h3 className="mt-3 mt-md-4 fs-4 fs-md-3">Welcome to Journal App</h3>
+          <p className="text-muted mb-0 fs-6 fs-md-5">Please login to continue</p>
         </div>
 
         <form onSubmit={handleLogin}>
-          {error && <div className="alert alert-danger">{error}</div>}
+          {error && <div className="alert alert-danger fs-6">{error}</div>}
           <div className="mb-3">
-            <label className="form-label">Username</label>
+            <label className="form-label fw-medium">Username</label>
             <input
               type="text"
-              className="form-control"
+              className="form-control form-control-lg"
               required
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -58,10 +63,10 @@ export default function LoginPage() {
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Password</label>
+            <label className="form-label fw-medium">Password</label>
             <input
               type="password"
-              className="form-control"
+              className="form-control form-control-lg"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -69,20 +74,20 @@ export default function LoginPage() {
             />
           </div>
 
-          <div className="mb-2 d-flex justify-content-between align-items-center">
-            <a href="/forgot-password" className="small text-muted">Forgot password?</a>
-            <div>
-              <input type="checkbox" id="remember" className="me-1" />
-              <label htmlFor="remember" className="small text-muted">Remember</label>
+          <div className="mb-3 d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2">
+            <a href="/forgot-password" className="small text-muted text-decoration-none">Forgot password?</a>
+            <div className="d-flex align-items-center">
+              <input type="checkbox" id="remember" className="me-2" />
+              <label htmlFor="remember" className="small text-muted mb-0">Remember</label>
             </div>
           </div>
 
-          <button type="submit" className="btn btn-dark w-100 mb-2">
+          <button type="submit" className="btn btn-dark w-100 mb-3 py-2 py-md-3 fs-6">
             Login
           </button>
           <button
             type="button"
-            className="btn btn-outline-dark w-100"
+            className="btn btn-outline-dark w-100 py-2 py-md-3 fs-6"
             onClick={handleSignUp}
           >
             Sign Up
