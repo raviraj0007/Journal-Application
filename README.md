@@ -53,25 +53,10 @@ A modern, fully responsive journal web application built with React, Bootstrap, 
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/raviraj0007/journal-frontend
    cd journal-frontend
    ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
 
-### Running the App
-Start the development server:
-```bash
-npm start
-```
-The app will be available at [http://localhost:3000](http://localhost:3000).
-
-### Build for Production
-```bash
-npm run build
-```
 
 ## 🏗️ Project Structure
 ```
