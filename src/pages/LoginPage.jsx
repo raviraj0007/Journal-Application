@@ -39,12 +39,14 @@ export default function LoginPage() {
         minWidth: "280px"
       }}>
         <div className="text-center mb-3 mb-md-4">
-          <img
-            src="https://img.icons8.com/ios/512/ff0000/journal.png"
-            alt="Journal Logo"
-            className="img-fluid"
-            style={{ height: "50px", maxHeight: "60px" }}
-          />
+          <div className="d-flex justify-content-center mb-3">
+            <img
+              src="https://img.icons8.com/ios/512/ff0000/journal.png"
+              alt="Journal Logo"
+              className="img-fluid"
+              style={{ height: "60px", maxHeight: "80px" }}
+            />
+          </div>
           <h3 className="mt-3 mt-md-4 fs-4 fs-md-3">Welcome to Journal App</h3>
           <p className="text-muted mb-0 fs-6 fs-md-5">Please login to continue</p>
         </div>
