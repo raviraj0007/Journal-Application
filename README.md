@@ -1,4 +1,4 @@
-URL - https://journalentry-1.netlify.app
+# URL - https://journalentry-1.netlify.app
 
 # Journal Frontend
 
