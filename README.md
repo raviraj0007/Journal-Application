@@ -1,3 +1,5 @@
+URL - https://journalentry-1.netlify.app
+
 # Journal Frontend
 
 A modern, fully responsive journal web application built with React, Bootstrap, and Tailwind CSS. Users can sign up, log in, and manage their journal entries with a beautiful, mobile-first design that works seamlessly across all devices.
